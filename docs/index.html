@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="NuiScene">
+  <meta name="keywords" content="NuiScene, 3D, Scene Generation, Unbounded Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NuiScene: Exploring Efficient Generation of Unbounded Outdoor Scenes</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-79LS3GFLC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-79LS3GFLC4');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="icon" href="./static/images/needle.png">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <img src="./static/images/needle.png" style="vertical-align: middle; height: 1em; margin-right: 10px;">
+            Nui(縫い)Scene <br>
+            Exploring Efficient Generation of Unbounded Outdoor Scenes
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://hanhung.github.io/">Han-Hung Lee</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://sulley.cc/">Qinghong Han</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://angelxuanchang.github.io/">Angel X. Chang</a><sup>1,2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Simon Fraser University</span>
+            <span class="author-block"><sup>2</sup>Canada CIFAR AI Chair, Amii</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/3dlg-hcvc/NuiScene"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (Coming Soon)</span>
+                  </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser_1" autoplay muted loop playsinline height="100%">
+        <!-- <source id="webmSource_1" src="./static/videos/2649163631_crop_top.webm" type="video/webm" preload="auto"> -->
+        <source src="./static/videos/2649163631_crop_top.mp4" type="video/mp4" preload="auto">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this paper, we explore the task of generating expansive outdoor scenes, ranging from castles to high-rises. 
+            Unlike indoor scene generation, which has been a primary focus of prior work, outdoor scene generation presents unique challenges, 
+            including wide variations in scene heights and the need for a method capable of rapidly producing large landscapes. 
+            To address this, we propose an efficient approach that encodes scene chunks as uniform vector sets, 
+            offering better compression and performance than the spatially structured latents used in prior methods. 
+            Furthermore, we train an explicit outpainting model for unbounded generation, 
+            which improves coherence compared to prior iterative inpainting schemes while also speeding up generation by eliminating extra diffusion steps. 
+            To facilitate this task, we curate NuiScene43, a small but high-quality set of scenes, preprocessed for joint training. Notably, 
+            when trained on scenes of varying styles, our model can blend different environments, such as rural houses and city skyscrapers, within the same scene, 
+            highlighting the potential of our curation process to leverage heterogeneous scenes for joint training.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="is-centered">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Model</h2>
+        <img src="static/images/model.png" alt="Description of image">
+      </div>
+    </div>
+
+    <div class="is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">More Results</h2>
+        <img src="static/images/more_results.png" alt="Description of image">
+        <video id="teaser_2" autoplay muted loop playsinline height="100%">
+          <!-- <source id="webmSource_2" src="./static/videos/4125915641_crop_top.webm" type="video/webm"> -->
+          <source id="mp4Source_2" src="./static/videos/4125915641_crop_top.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <!-- <pre><code>
+}</code></pre> -->
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            The template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. Please check out their great work if you find it helpful as well.
+          </p>
+          <p>
+            Favicon from: <a href="https://www.flaticon.com/free-icons/needle" title="needle icons">Needle icons created by Smashicons - Flaticon</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
