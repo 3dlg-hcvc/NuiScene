@@ -126,10 +126,10 @@
             To address this, we propose an efficient approach that encodes scene chunks as uniform vector sets, 
             offering better compression and performance than the spatially structured latents used in prior methods. 
             Furthermore, we train an explicit outpainting model for unbounded generation, 
-            which improves coherence compared to prior iterative inpainting schemes while also speeding up generation by eliminating extra diffusion steps. 
-            To facilitate this task, we curate NuiScene43, a small but high-quality set of scenes, preprocessed for joint training. Notably, 
-            when trained on scenes of varying styles, our model can blend different environments, such as rural houses and city skyscrapers, within the same scene, 
-            highlighting the potential of our curation process to leverage heterogeneous scenes for joint training.
+            which improves coherence compared to prior resampling-based inpainting schemes while also speeding up generation by eliminating extra diffusion steps. 
+            To facilitate this task, we curate NuiScene43, a small but high-quality set of scenes, preprocessed for joint training. Notably, when trained on scenes of varying styles, 
+            our model can blend different environments, such as rural houses and city skyscrapers, 
+            within the same scene, highlighting the potential of our curation process to leverage heterogeneous scenes for joint training.
           </p>
         </div>
       </div>
