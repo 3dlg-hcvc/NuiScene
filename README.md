@@ -4,7 +4,7 @@
 
 [Han-Hung Lee](https://hanhung.github.io/), [Qinghong Han](https://sulley.cc/), [Angel X. Chang](https://angelxuanchang.github.io/)
 
-**[Project Page](https://3dlg-hcvc.github.io/NuiScene/)** | **[Paper]()** | **[Data]()**
+**[Project Page](https://3dlg-hcvc.github.io/NuiScene/)** | **[Paper](https://arxiv.org/abs/2503.16375)** | **[Data]()**
 
 <img src="docs/static/images/teaser.png" alt="teaser" />
 
