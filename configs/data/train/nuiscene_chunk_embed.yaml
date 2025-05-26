@@ -1,0 +1,14 @@
+dataloader:
+  batch_size: 192
+  num_workers: 8
+
+dataset: NuiSceneChunkEmbed
+dataset_path: ${project_root_path}/dataset/data
+
+metadata:
+  num_chunks: 4
+  id_to_model_file: null
+  h5_file: null
+  vae_ckpt_path: ${vae_ckpt_path}
+
+monitor_value: mse_loss

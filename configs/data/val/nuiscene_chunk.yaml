@@ -1,0 +1,21 @@
+dataloader:
+  batch_size: 4
+  num_workers: ${data.train.dataloader.num_workers}
+
+dataset: NuiSceneChunk
+dataset_path: ${data.train.dataset_path}
+
+metadata:
+  num_chunks: ${data.train.metadata.num_chunks}
+  pc_size: ${data.train.metadata.pc_size}
+  replica_pc_size: ${data.train.metadata.replica_pc_size}
+  axis_scaling: False
+  num_occ_samples: 10000
+  h5_file: ${data.train.metadata.h5_file}
+  id_to_model_file: ${data.train.metadata.id_to_model_file}
+  split_file: ${project_root_path}/dataset/split/val_1_scene.txt
+
+evaluator:
+  _target_: src.model.util.BCEWithLogitsMetric
+
+monitor_value: eval_occ

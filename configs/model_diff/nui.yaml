@@ -1,0 +1,38 @@
+model_name:
+  _target_: src.model.diff.model.NuiModel
+
+network:
+  heads: 8
+  width: 512
+  qkv_norm: True
+  # Probability to drop first two conditional chunks
+  drop_cond_p: 0.2
+  time_embed_dim: 128
+  vae_latent_dim: null
+  vae_num_latents: null
+  denoiser_enc_dec_num_layers: 12
+
+  lambda_denoise: 1
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 0.0001
+
+scheduler:
+  _target_: src.model.util.LinearWarmupCosineAnnealingLR
+  eta_min: 1e-7
+  warmup_epochs: 5
+  warmup_start_lr: 0.00002
+  max_epochs: ${trainer.max_epochs}
+
+diffusion_scheduler:
+  scheduler_config:
+    _target_: diffusers.DDPMScheduler
+    num_train_timesteps: 1000
+    beta_start: 0.00085
+    beta_end: 0.012
+    beta_schedule: scaled_linear
+    # beta_schedule: squaredcos_cap_v2
+    clip_sample: False
+    prediction_type: epsilon
+    steps_offset: 1

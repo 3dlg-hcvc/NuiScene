@@ -1,0 +1,54 @@
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+vae_ckpt_path: null
+vae_scaling_factor: 1
+
+defaults:
+  - _self_
+  - model_diff: nui
+  - data/train: nuiscene_chunk_embed
+  - override hydra/job_logging: disabled
+  - override hydra/hydra_logging: disabled
+
+project_root_path: ${hydra:runtime.cwd}
+experiment_output_path: ${project_root_path}/output/${data.train.dataset}/${experiment_name}
+pred_path: ${experiment_output_path}/prediction
+
+ckpt_path: null
+experiment_name: null
+train_seed: 123
+test_seed: 123
+
+logger:
+  # https://pytorch-lightning.readthedocs.io/en/stable/extensions/generated/pytorch_lightning.loggers.WandbLogger.html
+  _target_: lightning.pytorch.loggers.WandbLogger
+  project: NuiSceneDiff
+  name: ${experiment_name}
+  save_dir: ${experiment_output_path}/training
+
+# https://pytorch-lightning.readthedocs.io/en/stable/common/trainer.html
+trainer:
+  _target_: lightning.pytorch.Trainer
+  accelerator: gpu
+  devices: 1
+  strategy: ddp
+  max_epochs: 320
+  num_sanity_val_steps: 5
+  check_val_every_n_epoch: 1
+  profiler: simple
+  precision: 16-mixed
+  accumulate_grad_batches: 1
+
+# https://pytorch-lightning.readthedocs.io/en/stable/api/pytorch_lightning.callbacks.ModelCheckpoint.html
+checkpoint_monitor:
+  _target_: lightning.pytorch.callbacks.ModelCheckpoint
+  monitor: train_loss/${data.train.monitor_value}
+  mode: min
+  save_last: True
+  save_top_k: 1
+  every_n_epochs: ${trainer.check_val_every_n_epoch}
+  filename: "{epoch:02d}"
+  dirpath: ${experiment_output_path}/training

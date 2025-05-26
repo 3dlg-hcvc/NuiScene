@@ -1,0 +1,16 @@
+dataloader:
+  batch_size: 20
+  num_workers: 8
+
+dataset: NuiSceneChunk
+dataset_path: ${project_root_path}/dataset/data
+
+metadata:
+  num_chunks: 4
+  pc_size: 4096
+  replica_pc_size: 3
+  axis_scaling: True
+  num_occ_samples: 2048
+  h5_file: ${data.train.dataset_path}/1_scene_qcs100.h5
+  id_to_model_file: null
+  split_file: ${project_root_path}/dataset/split/train_1_scene.txt

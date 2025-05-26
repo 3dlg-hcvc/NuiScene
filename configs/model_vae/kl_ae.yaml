@@ -1,0 +1,39 @@
+model_name:
+  _target_: src.model.vae.model.VAEModel
+
+network:
+  lambda_vol: 1
+  lambda_near: 0.1
+  lambda_kl: 0.001
+  lambda_height: 1
+  lambda_emb_dist: 1
+
+  ae:
+    heads: 8
+    depth: 24
+    width: 512
+    output_dim: 1
+    latent_dim: 64
+    qkv_norm: True
+    num_latents: 16
+
+    vecset_upsample: False
+    upsample_num_latents: 512
+    num_vecset_upsample_layers: 3
+
+    num_deconv: 4
+    triplane_res: 4
+    renorm_factor: 6
+    use_triplane: False
+    triplane_channels: 40
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 0.00005
+
+scheduler:
+  _target_: src.model.util.LinearWarmupCosineAnnealingLR
+  eta_min: 1e-7
+  warmup_epochs: 10
+  warmup_start_lr: 0.00002
+  max_epochs: ${trainer.max_epochs}

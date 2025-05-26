@@ -1,2 +1,11 @@
-.DS_store
 .idea
+wandb
+.cache
+output
+.DS_store
+pretrained
+playground
+__pycache__
+dataset/data
+download/.cache
+download/sampled_h5
