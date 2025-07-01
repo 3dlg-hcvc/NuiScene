@@ -2,6 +2,8 @@
 
 ## NuiScene: Exploring Efficient Generation of Unbounded Outdoor Scenes
 
+**ICCV 2025**
+
 [Han-Hung Lee](https://hanhung.github.io/), [Qinghong Han](https://sulley.cc/), [Angel X. Chang](https://angelxuanchang.github.io/)
 
 **[Paper](https://arxiv.org/abs/2503.16375)** | **[Project Page](https://3dlg-hcvc.github.io/NuiScene/)** | **[Dataset Page](https://3dlg-hcvc.github.io/NuiScene43-Dataset/)** | **[Data Code](https://github.com/3dlg-hcvc/NuiScene43-Dataset)**

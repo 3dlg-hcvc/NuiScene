@@ -35,7 +35,6 @@ def main(_cfg):
     decode_res_x = int(quad_chunk_size * res_multiplier)
     decode_res_y = int(quad_chunk_size * res_multiplier * 10)
     decode_res_z = int(quad_chunk_size * res_multiplier)
-    overlap_voxel = cfg.data.train.metadata.overlap_voxel * res_multiplier
 
     output_folder = os.path.join('output', _cfg.ckpt_path.split('/')[-3])
     os.makedirs(output_folder, exist_ok=True)
