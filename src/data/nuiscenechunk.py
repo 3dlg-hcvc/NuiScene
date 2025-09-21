@@ -116,6 +116,13 @@ class NuiSceneChunk(Dataset):
         else:
             scene_id = -1
 
+        if 'sample_x' in self.pcd_occ_h5.keys():
+            sample_x = self.pcd_occ_h5['sample_x'][selected_id]
+            sample_y = self.pcd_occ_h5['sample_y'][selected_id]
+        else:
+            sample_x = -1
+            sample_y = -1
+
         return {
             "selected_id": selected_id,
             "pcd": large_chunk_pcds,
@@ -124,4 +131,6 @@ class NuiSceneChunk(Dataset):
             "height": large_chunk_heights,
             "occ_query": large_chunk_occ_queries,
             "scene_id": scene_id,
+            "sample_x": sample_x,
+            "sample_y": sample_y,
         }

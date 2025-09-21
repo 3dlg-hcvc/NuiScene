@@ -126,8 +126,8 @@ class VAEModel(pl.LightningModule):
 
         if use_pred_height:
             height_feats = self.height_ca(self.height_latent.repeat(kl_embed.shape[0], 1, 1), kl_embed).squeeze()
-            pred_height = self.out_height(height_feats).item() + 1
-            # pred_height = self.out_height(height_feats).item() + 0.5
+            # pred_height = self.out_height(height_feats).item() + 1
+            pred_height = self.out_height(height_feats).item() + 0.5
             pred_height_scale = (pred_height + 1) / 2
         else:
             pred_height = real_height
@@ -160,7 +160,8 @@ class VAEModel(pl.LightningModule):
     @torch.no_grad()
     def predict_grid_occ_from_embed(self, kl_embed, grid_resolution, chunk_size=100000):
         height_feats = self.height_ca(self.height_latent.repeat(kl_embed.shape[0], 1, 1), kl_embed).squeeze()
-        pred_height = self.out_height(height_feats).item() + 1
+        # pred_height = self.out_height(height_feats).item() + 1
+        pred_height = self.out_height(height_feats).item() + 0.5
         # pred_height = self.out_height(height_feats).item()
         pred_height_scale = (pred_height + 1) / 2
 

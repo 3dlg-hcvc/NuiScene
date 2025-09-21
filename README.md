@@ -43,21 +43,22 @@ python download/download_weights.py
 ```
 # ckpt_path chooses the pretrained diffusion model
 # +num_gen_rows, +num_gen_cols controls the number of (rows+1, cols+1) chunks to generate.
-# +quad_chunk_size controls the voxel size for the quad chunk. Can set lower for different LoD.
+# +quad_chunk_size controls the voxel size for the quad chunk. Can set lower for different LoD, faster decoding and smaller obj file.
 
 # Single scene model
 python utils/infinite_gen.py ckpt_path=pretrained/diff_vecset16_occ2048_bs20x2_single_l24_bs192/training/last.ckpt +quad_chunk_size=100 +num_gen_rows=20 +num_gen_cols=20
 
+# 4 scene model
+python utils/infinite_gen.py ckpt_path=pretrained/4_scene_diff/training/last.ckpt +quad_chunk_size=100 +num_gen_rows=15 +num_gen_cols=45
+
 # 13 scene model
-python utils/infinite_gen.py ckpt_path=pretrained/diff_vecset16_up512l3preproj_occ2048_bs20x4_13_l24_bs192/training/last.ckpt +quad_chunk_size=100 +num_gen_rows=15 +num_gen_cols=45
+python utils/infinite_gen.py ckpt_path=pretrained/13_scene_diff_up512l3preproj/training/last.ckpt +quad_chunk_size=100 +num_gen_rows=15 +num_gen_cols=45
 ```
 3. Visualize result in ***output/\*/\*.obj***.
 
 > You can also see some pre-generated results from these two models [here](https://huggingface.co/3dlg-hcvc/NuiScene/tree/main/examples).
 
 ## Training
-
-> [Note] I have not yet tested the full training on the refactored code in this repo yet. If you run into any issues please raise an issue.
 
 1. Download the single scene h5.
 ```
@@ -79,15 +80,13 @@ python train_diff.py vae_ckpt_path=output/NuiSceneChunk/1_scene_vae/training/las
 ```
 5. Run unbounded generation (see the inference section above).
 
-## Differences from Paper
+## Notes from Paper Supplemental
 
-1. Sped up unbounded generation. In the paper we used the raster scan order for generating chunks. However, each i-th chunk in a row only depends on the (i-1)-th chunk in the previous row. So we can batch the operation across the anti-diagonal of the scene. This results in a large speed up and what is currently used in the utils/infinite_gen.py.
-2. For the 13 scene model we added a pixel unshuffle operation to upsample vector sets (similar to decovolution for the triplane). This results in better reconstruction results without increasing the number of vector sets for diffusion learning. We will add this mechanism to a future version of the paper.
+1. Sped up unbounded generation. In the main paper, we used the raster scan order for generating chunks for benchmarking. However, each i-th chunk in a row only depends on the (i-1)-th chunk in the previous row. So we can batch the operation across the anti-diagonal of the scene. This results in a large speed up and what is currently used in the utils/infinite_gen.py.
+2. For the 13 scene model we added a pixel unshuffle operation to upsample vector sets (similar to decovolution for the triplane). This results in better reconstruction results without increasing the number of vector sets for diffusion learning. Please see the supplemental of the paper for more details.
 
 ## TODO
 
-- [ ] Add more explanation of configurations for training.
-- [ ] Upload the 4_scene and 13_scene h5 files.
 - [ ] Add evaluation scripts.
 
 ## Citation
